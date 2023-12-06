@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+                body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        .mainbox {
+            width: 700px;
+            background-color: rgba(0, 0, 255, 0.205);
+            padding: 10px;
+            border-top: 2px solid blue;
+            background: linear-gradient(to right, #EEEEFF, #CDCCFF);
+        }
+
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttongray {
+            background-color: white;
+                     color: darkgrey;
+            padding: 10px 20px;
+            border: 1px solid darkgrey;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+.buttonbig {
+    width: 300px;
+            background-color: rgb(231, 227, 227);
+                     color: darkblue;
+            padding: 10px 20px;
+            border: 1px solid darkgrey;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Эффект тени */
+        }
+        .blackkontent {
+            background-color: black;
+            color: white;
+            width: 700px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 700px;
+        }
+
+        li::before {
+            content: '\2022';
+            color: black;
+            display: inline-block;
+            width: 1em;
+            margin-right: 0.5em;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            width: 700px;
+        }
+
+        mark {
+            background: #f9f2f4;
+            color: red;
+        }
+
+        code {
+            padding-left: 0px;
+            font-size: 14px;
+        }
+
+        .note {
+            padding-left: 10px;
+            background: #F9FAFB;
+            border-left: 2px solid #808080;
+            width: 700px;
+            height: 40px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .gray-line {
+            width: 700px;
+            height: 1px;
+            background-color: #adaaaa;
+            margin: 20px 0 20px;
+        }
+
+        .eyebrow {
+            letter-spacing: 2.5px;
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.25rem;
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .container {
+        display: flex;
+        align-items: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="main-block">
+        <div class="header"></div>
+        <div class="left-position sidebar"></div>
+        <div class="right-position sidebar"></div>
+        <div class="content"></div>
+        <div class="footer"></div>
+    </div>
+    <h1>Laravel 8</h1>
+
+    <div class="mainbox">
+        <h4>Get Started With Machine Learning</h4>
+        Learn the fundamentals of Machine Learning with this free course. Future-proof your career by adding ML skills
+        to your toolkit — or build foundational ML skills to land a job in AI or Data Science.
+
+        <p> <button class="button">Get Free Course</button></p>
+    </div>
+    <div class="content">
+        <p> While creating an application or working with files in your application, you will want to store a file in a
+            folder.</p>
+        <p> Sometimes there will be instances where the folder does not exist.</p>
+
+        <p>You want to create that folder during the process so the file can be stored without making the user resend
+            the request.</p>
+
+        <p>You can create a folder or directory by using the <mark>File::makeDirectory()</mark>
+            <strong>function.</strong>
+        </p>
+    </div>
+
+    <p>
+    <h2>Syntax</h2>
+    </p>
+    <div class="blackkontent">
+        <font color="green">File</font>::makeDirectory($path, $mode, $recursive, $force)
+    </div>
+    <div>
+
+        <h2>Parameters</h2>
+        <p>The <mark>File::makeDirectory</mark> function takes the following as input
+            parameters:</p>
+        <ul>
+            <li>
+                <mark>$path:</mark> This string represents the path of the directory we wish to create.
+            </li>
+
+            <li>
+                <mark>$mode:</mark> This is a four-digit integer that is used to set permissions for the
+                directory.
+            </li>
+            <li>
+                <mark>$recursive:</mark> This is a boolean variable used to specify if the recursive mode is set.
+            </li>
+
+            <li>
+                <mark>$force:</mark>This is a boolean variable that, when set, lets you create a file in the
+                profile path even when
+                the directories in the path do not exist.
+            </li>
+        </ul>
+    </div>
+    <h2>Return value</h2>
+    The function returns true if the requested directory is created. Otherwise, it returns <mark>false.
+    </mark>
+    <h2>Code</h2>
+    <div class="blackkontent">
+        <code>
+            <pre>
+        public function createDirecrotory(Request $request)
+        {
+            $path = public_path('upload/');
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+
+                // retry storing the file in the newly created path.
+            }
+        }
+            </pre>
+        </code>
+    </div>
+
+    <p> The above code has <mark><sub>$path</sub></mark>, which is basically an <mark><sub>upload</sub></mark> folder where you want to store
+        the file.</p>
+
+    <p> We check if it exists, and if it doesn’t, we create the <mark>upload</mark> folder.</p>
+
+    <div class="note"> Note: The <mark><sub>File::isDirectory()</sub></mark> <strong>function</strong>
+        is used to check whether or
+        not the given
+        path exists.
+    </div>
+    <div class="gray-line"></div>
+
+    <div class="eyebrow">RELATED TAGS</div>
+    <br>
+
+    <button class="buttongray">folder</button> <button class="buttongray">php</button> <button
+        class="buttongray">laravel</button><br>
+        <br>
+<div class="eyebrow">CONTRIBUTOR</div>    
+    <div class="container">
+ <div class="circle">
+        <img src="unnamed.png" alt="Изображение">
+    </div>
+    <p>hnnftkmmll kiygfdhjljhg</p>
+</div>
+ <div class="gray-line"></div><br>
+ Copyright ©2023 Educative, Inc. All rights reserved<br>
+ <br>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 cursor-pointer stroke-current text-gray-L400" aria-label="Like this answer" style="margin-right: 10px;">
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" style="stroke: #B0B0B7; fill: none;"></path>
+</svg>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-gray-L400" aria-label="Bookmark this answer" style="margin-right: 10px;">
+  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" style="stroke: #B0B0B7;"></path>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 stroke-current text-gray-L400" style="margin-right: 10px;">
+  <circle cx="18" cy="5" r="3" style="stroke: #B0B0B7;"></circle>
+  <circle cx="6" cy="12" r="3" style="stroke: #B0B0B7;"></circle>
+  <circle cx="18" cy="19" r="3" style="stroke: #B0B0B7;"></circle>
+  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" style="stroke: #B0B0B7;"></line>
+  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" style="stroke: #B0B0B7;"></line>
+</svg>
+
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer">
+  <path d="M22 11.006C22 9.41555 21.2267 7.98057 20 7V15C21.2267 14.0314 22 12.5964 22 11.006Z" style="stroke: #B0B0B7;"></path>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1547 13L16 16.5532V6.37989L11.2461 10.5H3V13H11.1547ZM10.5 15L16.4086 19.333C17.0692 19.8174 18 19.3457 18 18.5266V4.18993C18 3.333 16.9926 2.87301 16.3451 3.43424L10.5 8.49997H2C1.44772 8.49997 1 8.94768 1 9.49997V14C1 14.5522 1.44772 15 2 15H5.5V22H7.5V15H10.5Z" style="stroke: #B0B0B7;"></path>
+</svg>
+<br>
+<br>
+<button class="buttonbig">Did you find this helpful? <img width=8% height="auto" style="margin-left: 10px;" src="free-icon-feedback-12503997.png" alt="like"></button>
+
+</body>
+
+</html>
